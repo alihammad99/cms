@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun --version)",
+      "Bash(turbo --version)",
+      "Bash(bun install *)",
+      "Bash(bun run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(kill 12786)",
+      "Bash(curl -s http://localhost:3000/health)",
+      "Bash(curl -s -X POST http://localhost:3000/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Ali\",\"email\":\"ali@test.com\",\"password\":\"testpass123\"}')",
+      "Bash(pkill -f \"bun run src/index.ts\")",
+      "Bash(curl -s -X POST http://localhost:3000/stores -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lcl9pZCI6Ijd5Ul9Lc2hrQWlpM0o4N0oiLCJlbWFpbCI6ImFsaXJlc3Nhbi5hckBnbWFpbC5jb20iLCJwbGFuIjoiZnJlZSIsInR5cGUiOiJvd25lciIsImlhdCI6MTc4MTEyMzY2MX0.qO7ED-ayFW6mzWDIlngaFLckypgaXcPhvUZHvwrqbJ8' -d '{\"name\":\"Test Store\",\"slug\":\"test-store\",\"admin_password\":\"testpass123\"}')",
+      "Bash(curl -s -H \"Authorization: Bearer $\\(grep TURSO_API_TOKEN /Users/alihammad/Claude/Projects/cms/apps/api/.env)",
+      "Bash(pkill -f \"src/index.ts\")",
+      "Bash(curl -s -X POST http://localhost:3000/stores -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lcl9pZCI6Ijd5Ul9Lc2hrQWlpM0o4N0oiLCJlbWFpbCI6ImFsaXJlc3Nhbi5hckBnbWFpbC5jb20iLCJwbGFuIjoiZnJlZSIsInR5cGUiOiJvd25lciIsImlhdCI6MTc4MTEyMzY2MX0.qO7ED-ayFW6mzWDIlngaFLckypgaXcPhvUZHvwrqbJ8' -d '{\"name\":\"My Store\",\"slug\":\"my-store\",\"admin_password\":\"testpass123\"}')",
+      "Bash(curl -s -X POST http://localhost:3000/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"test\",\"email\":\"test@test\",\"password\":\"test\"}')",
+      "Bash(pkill -f \"apps/api/src/index.ts\")",
+      "Bash(curl -s -X POST http://localhost:3000/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"test2@test.com\",\"password\":\"testpass123\"}')",
+      "Bash(pkill -f \"turbo dev\")",
+      "Bash(pkill -f \"bun run dev\")",
+      "Bash(awk '{print $2}')",
+      "Bash(xargs kill -9)",
+      "Bash(curl -s -X POST https://tx-alihammad99.aws-eu-west-1.turso.io/v2/pipeline -H 'Authorization: Bearer eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODExMjMyMTUsImlkIjoiMDE5ZWIzMzctMDYwMS03NTAyLTgzYzktN2YyNTAzZmRiMDY2IiwicmlkIjoiYjI5NWJlZTktMzc4NC00NzZhLWE1NjEtYTMxNGFmNjg2MmU1In0.ywJH4AAa1uwngxIHNLQhuhkM6bZAJq5VGiMJqC6nDMcOGOYKhQDmGrUDLp1j-dJl-5GTscHY0FgSHTdfibzeCw' -H 'Content-Type: application/json' -d '{\"requests\":[{\"type\":\"execute\",\"stmt\":{\"sql\":\"SELECT email FROM owners LIMIT 5\"}},{\"type\":\"close\"}]}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(r\\) for r in d.get\\('results',[]\\)]\")",
+      "Bash(curl -s \"http://localhost:3000/\")",
+      "Bash(curl -s \"http://localhost:3000/health\")",
+      "Bash(pkill -f \"apps/api\")"
+    ]
+  }
+}

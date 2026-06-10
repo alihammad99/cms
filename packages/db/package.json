@@ -1,0 +1,19 @@
+{
+  "name": "@manzoom/db",
+  "version": "0.0.1",
+  "private": true,
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "migrate:platform": "bun run src/platform/migrate.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.4",
+    "@manzoom/config": "workspace:*",
+    "@manzoom/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

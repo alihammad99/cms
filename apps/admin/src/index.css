@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: #f8f8f7;
+    color: #1c1c1c;
+  }
+
+  [dir="rtl"] { font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif; }
+}
+
+@layer components {
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md font-medium
+           transition-all duration-100 select-none whitespace-nowrap cursor-pointer;
+    font-size: 13px;
+    padding: 0 12px;
+    height: 32px;
+    border: none;
+    outline: none;
+  }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .btn-primary {
+    @apply btn text-white;
+    background: #1c1c1c;
+  }
+  .btn-primary:hover:not(:disabled) { background: #2e2e2e; }
+  .btn-primary:active:not(:disabled) { background: #111; }
+
+  .btn-secondary {
+    @apply btn text-gray-700;
+    background: white;
+    box-shadow: 0 0 0 1px #e2e2e2 inset;
+  }
+  .btn-secondary:hover:not(:disabled) { background: #fafafa; }
+
+  .btn-danger {
+    @apply btn text-white;
+    background: #e5484d;
+  }
+  .btn-danger:hover:not(:disabled) { background: #d93d42; }
+
+  .btn-ghost {
+    @apply btn text-gray-600 bg-transparent;
+  }
+  .btn-ghost:hover:not(:disabled) { background: #f0f0ef; color: #1c1c1c; }
+
+  /* ── Inputs ── */
+  .input {
+    @apply block w-full rounded-md bg-white text-gray-900 placeholder-gray-400;
+    font-size: 14px;
+    padding: 7px 11px;
+    box-shadow: 0 0 0 1px #e2e2e2 inset;
+    transition: box-shadow 0.1s;
+    outline: none;
+  }
+  .input:focus {
+    box-shadow: 0 0 0 1.5px #1c1c1c inset;
+  }
+  .input:disabled { background: #f8f8f7; color: #a0a0a0; cursor: not-allowed; }
+
+  .label {
+    @apply block font-medium text-gray-700 mb-1.5;
+    font-size: 13px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #e8e8e7;
+  }
+
+  .card-hover {
+    @apply card cursor-pointer text-start;
+    transition: box-shadow 0.15s;
+  }
+  .card-hover:hover {
+    box-shadow: 0 0 0 1px #c0bfbe, 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center font-medium rounded-full;
+    font-size: 11px;
+    padding: 2px 8px;
+    line-height: 18px;
+  }
+  .badge-gray   { @apply badge; background: #f0f0ef; color: #6f6f6f; }
+  .badge-green  { @apply badge; background: #dcfce7; color: #166534; }
+  .badge-yellow { @apply badge; background: #fef9c3; color: #854d0e; }
+  .badge-red    { @apply badge; background: #fee2e2; color: #991b1b; }
+  .badge-blue   { @apply badge; background: #dbeafe; color: #1d4ed8; }
+  .badge-purple { @apply badge; background: #f3e8ff; color: #7e22ce; }
+  .badge-orange { @apply badge; background: #ffedd5; color: #9a3412; }
+
+  /* ── Table ── */
+  .th {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8f8f8f;
+    padding: 0 14px 10px;
+    text-align: left;
+  }
+  [dir="rtl"] .th { text-align: right; }
+
+  .td {
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #374151;
+    border-top: 1px solid #f3f3f2;
+  }
+
+  /* ── Nav item ── */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6f6f6f;
+    text-decoration: none;
+    transition: background 0.1s, color 0.1s;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: inherit;
+  }
+  .nav-item:hover { background: #edece9; color: #1c1c1c; }
+  .nav-item.active { background: white; color: #1c1c1c; box-shadow: 0 0 0 1px #e2e2e2; }
+
+  /* ── Skeleton ── */
+  .skeleton { border-radius: 4px; background: #ebebea; animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.5 } }
+
+  /* ── Focus ── */
+  button:focus-visible, a:focus-visible {
+    outline: 2px solid #1c1c1c;
+    outline-offset: 2px;
+  }
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d0d0ce; border-radius: 3px; }
