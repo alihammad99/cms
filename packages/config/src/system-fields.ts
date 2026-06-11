@@ -39,6 +39,7 @@ export const SYSTEM_FIELDS: Record<string, FieldDef[]> = {
     { field: 'name', type: 'text', required: true, default: null, label: 'Name', label_ar: 'الاسم', system: true },
     { field: 'name_ar', type: 'text', required: false, default: null, label: 'Name (Arabic)', label_ar: 'الاسم بالعربي', system: true },
     { field: 'slug', type: 'text', required: true, default: null, label: 'Slug', label_ar: 'الرابط', system: true },
+    { field: 'image', type: 'media', required: false, default: null, label: 'Image', label_ar: 'الصورة', system: true },
     { field: 'parent_id', type: 'relation', required: false, default: null, label: 'Parent Category', label_ar: 'الفئة الأم', system: true },
     { field: 'created_at', type: 'timestamp', required: true, default: null, label: 'Created At', label_ar: 'تاريخ الإنشاء', system: true },
   ],

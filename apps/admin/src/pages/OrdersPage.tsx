@@ -58,18 +58,29 @@ export function OrdersPage({ storeSlug }: { storeSlug: string }) {
       <div style="padding:28px 32px;">
 
         {/* Header */}
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
           <div>
             <h1 style="font-size:18px;font-weight:700;color:#1c1c1c;margin-bottom:3px;">الطلبات</h1>
             <p style="font-size:13px;color:#a0a0a0;">{orders.length} طلب إجمالاً</p>
           </div>
-          <button
-            onClick={() => route(`/stores/${storeSlug}/collections/orders/new`)}
-            style="display:inline-flex;align-items:center;gap:6px;padding:0 14px;height:34px;background:#1c1c1c;color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            طلب جديد
-          </button>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button
+              onClick={() => route(`/stores/${storeSlug}/schema/orders`)}
+              style="display:inline-flex;align-items:center;gap:6px;padding:0 12px;height:34px;background:white;color:#6b6b6b;border:1px solid #e8e8e7;border-radius:7px;font-size:13px;cursor:pointer;transition:border-color .15s,color .15s;"
+              onMouseOver={(e: any) => { e.currentTarget.style.borderColor='#a0a0a0'; e.currentTarget.style.color='#1c1c1c' }}
+              onMouseOut={(e: any) => { e.currentTarget.style.borderColor='#e8e8e7'; e.currentTarget.style.color='#6b6b6b' }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              هيكل البيانات
+            </button>
+            <button
+              onClick={() => route(`/stores/${storeSlug}/collections/orders/new`)}
+              style="display:inline-flex;align-items:center;gap:6px;padding:0 14px;height:34px;background:#1c1c1c;color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              طلب جديد
+            </button>
+          </div>
         </div>
 
         {/* Status filter tabs */}

@@ -66,17 +66,20 @@ export const schemaRoutes = new Elysia({ prefix: '/:storeSlug/schema' })
       const existing = await getCollection(storeDb, body.name)
       if (existing) throw new ValidationError('Collection already exists')
 
+      // Migrate existing stores that don't have the icon column yet
+      try { await storeDb.execute('ALTER TABLE _collections ADD COLUMN icon TEXT') } catch {}
+
       const id = generateId()
       await storeDb.execute({
-        sql: 'INSERT INTO _collections (id, name, label, label_ar, system, realtime) VALUES (?, ?, ?, ?, 0, ?)',
-        args: [id, body.name, body.label, body.label_ar, body.realtime ? 1 : 0],
+        sql: 'INSERT INTO _collections (id, name, label, label_ar, system, realtime, icon) VALUES (?, ?, ?, ?, 0, ?, ?)',
+        args: [id, body.name, body.label, body.label_ar, body.realtime ? 1 : 0, body.icon ?? null],
       })
 
       await storeDb.execute(
         `CREATE TABLE IF NOT EXISTS ${body.name} (id TEXT PRIMARY KEY, created_at TEXT NOT NULL DEFAULT (datetime('now')))`
       )
 
-      return { collection: { id, name: body.name, label: body.label, label_ar: body.label_ar } }
+      return { collection: { id, name: body.name, label: body.label, label_ar: body.label_ar, icon: body.icon } }
     },
     {
       body: t.Object({
@@ -84,16 +87,19 @@ export const schemaRoutes = new Elysia({ prefix: '/:storeSlug/schema' })
         label: t.String({ minLength: 1 }),
         label_ar: t.String({ minLength: 1 }),
         realtime: t.Optional(t.Boolean()),
+        icon: t.Optional(t.String()),
       }),
     }
   )
 
-  // Update collection (label, realtime toggle)
+  // Update collection (label, realtime toggle, icon)
   .patch(
     '/:collection',
     async ({ params, body, storeDb }) => {
       const col = await getCollection(storeDb, params.collection)
       if (!col) throw new NotFoundError('Collection')
+
+      try { await storeDb.execute('ALTER TABLE _collections ADD COLUMN icon TEXT') } catch {}
 
       const updates: string[] = []
       const args: unknown[] = []
@@ -101,6 +107,7 @@ export const schemaRoutes = new Elysia({ prefix: '/:storeSlug/schema' })
       if (body.label !== undefined) { updates.push('label = ?'); args.push(body.label) }
       if (body.label_ar !== undefined) { updates.push('label_ar = ?'); args.push(body.label_ar) }
       if (body.realtime !== undefined) { updates.push('realtime = ?'); args.push(body.realtime ? 1 : 0) }
+      if (body.icon !== undefined) { updates.push('icon = ?'); args.push(body.icon) }
 
       if (updates.length) {
         args.push(params.collection)
@@ -117,6 +124,7 @@ export const schemaRoutes = new Elysia({ prefix: '/:storeSlug/schema' })
         label: t.Optional(t.String()),
         label_ar: t.Optional(t.String()),
         realtime: t.Optional(t.Boolean()),
+        icon: t.Optional(t.String()),
       }),
     }
   )

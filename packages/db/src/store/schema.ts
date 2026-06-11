@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS _collections (
   label_ar TEXT NOT NULL,
   system INTEGER NOT NULL DEFAULT 0,
   realtime INTEGER NOT NULL DEFAULT 0,
+  icon TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -89,6 +90,7 @@ CREATE TABLE IF NOT EXISTS categories (
   name TEXT NOT NULL,
   name_ar TEXT,
   slug TEXT NOT NULL UNIQUE,
+  image TEXT,
   parent_id TEXT REFERENCES categories(id),
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );

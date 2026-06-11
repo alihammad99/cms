@@ -7,6 +7,7 @@ import { LoginPage }         from './pages/Login'
 import { StoresPage }        from './pages/Stores'
 import { DashboardPage }     from './pages/Dashboard'
 import { OrdersPage }        from './pages/OrdersPage'
+import { OrderFormPage }     from './pages/OrderFormPage'
 import { ProductsPage }      from './pages/ProductsPage'
 import { CollectionsListPage } from './pages/CollectionsList'
 import { CollectionPage }    from './pages/Collections'
@@ -52,6 +53,16 @@ export function App() {
       <Route
         path="/stores/:storeSlug/collections"
         component={({ storeSlug }: any) => guard(<CollectionsListPage storeSlug={storeSlug} />)}
+      />
+
+      {/* Order form — dedicated page with product picker */}
+      <Route
+        path="/stores/:storeSlug/collections/orders/new"
+        component={({ storeSlug }: any) => guard(<OrderFormPage storeSlug={storeSlug} id="new" />)}
+      />
+      <Route
+        path="/stores/:storeSlug/collections/orders/:id"
+        component={({ storeSlug, id }: any) => guard(<OrderFormPage storeSlug={storeSlug} id={id} />)}
       />
 
       {/* orders + products → redirect to specialized pages */}

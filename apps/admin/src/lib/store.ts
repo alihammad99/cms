@@ -6,6 +6,10 @@ export const currentStore = signal<Pick<Store, 'id' | 'name' | 'slug'> | null>(
   JSON.parse(localStorage.getItem('mz_store') ?? 'null')
 )
 
+// Global cache so Layout doesn't re-fetch collections on every navigation
+interface CollInfo { name: string; label_ar: string; label: string; system: number; icon?: string }
+export const collectionsCache = signal<{ slug: string; data: CollInfo[] } | null>(null)
+
 export const isAuthenticated = computed(() => !!authToken.value)
 
 export function login(token: string): void {
